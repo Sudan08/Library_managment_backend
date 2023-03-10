@@ -6,7 +6,7 @@ const users = require('../src/users/routes');
 module.exports = (app) => {
   app.use('/status', status);
   app.use('/users', users);
-  // app.use('/users', validateAuth.checkIfAuthenticated, getData.getGeoip, users);
+  // app.use('/users', validateAuth.checkIfAuthenticated, users);
   app.use('*', (req, res) => {
     res.send('Not found!!!');
   });
