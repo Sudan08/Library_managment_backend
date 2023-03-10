@@ -9,9 +9,8 @@ const router = express.Router();
 router.post(
   '/api/v1/signup',
   (req , res) => {
-    
     controller.signUp(res, req.body);
-    res.send('Posted');
+    // res.send(req.body);
   }
 );
 

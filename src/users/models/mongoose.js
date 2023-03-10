@@ -1,18 +1,17 @@
 const mongoose = require('../../services/mongoose');
 
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
     scope :{
       type: String,
       required : true,
     },
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true,
     },
-    firstname: String,
+    firstName: String,
     lastName: String,
     email: {
       type: String,
@@ -27,15 +26,7 @@ const UserSchema = new Schema({
 );
 
 
-// UserSchema.pre('save',
-// async function(next) {
-//   const user = this;
-//   const hash = await bcrypt.hash(this.password, 10);
 
-//   this.password = hash;
-//   next();
-//   }
-// );
 
 
 const UserModel = mongoose.model('User', UserSchema);
