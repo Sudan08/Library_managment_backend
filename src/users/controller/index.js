@@ -15,6 +15,7 @@ module.exports.signUp = async (res, req) => {
     firstName,
     lastName,
   } = req;
+  
 
     const newUser = new UserModel({
       password: Bcrypt.hashSync(password, 10),
@@ -25,6 +26,7 @@ module.exports.signUp = async (res, req) => {
       scope,
     });
 
+    
     try {
       const savedUser = await newUser.save();
       const token = jwt.sign(
