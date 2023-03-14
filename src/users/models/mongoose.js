@@ -22,6 +22,16 @@ const UserSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    verification: {
+      randomnum:{
+        type: String,
+        required: true,
+      },
+      isValid:{
+        type: Boolean,
+        required: true,
+      },
+    }
   },
 );
 
