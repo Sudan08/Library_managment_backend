@@ -10,7 +10,6 @@ const login = async (res, req) => {
       email,
     } = req;
 
-    password = Bcrypt.hashSync(password, 10);
 
     try {
      await UserModel.findOne({email:email},(err, user) => {
@@ -18,25 +17,34 @@ const login = async (res, req) => {
             console.log(err);
         }
         else {
+            if (user.verification.isValid === false) {
+                res.json('Email not verified');
+            }else{
             if (user.length === 0) {
-                res.send('User does not exist');
+                res.json('User does not exist');
             } else{
                 bcrypt.compare(password, user.password, (err, result) => {
                     if (err) {
                         console.log(err);
                     } else {
                         if (result) {
-                            const token = jwt.sign(
-                                { email, id: user.id, userName: user.userName },
-                                config.API_KEY_JWT,
-                            );
-                            res.send(token);
+                            // const token = jwt.sign(
+                            //     { email, id: user.id, userName: user.userName },
+                            //     config.API_KEY_JWT,
+                            // );
+                            res.status(200).json({
+                                status: 200,
+                                message: 'Login Successful',
+                                // token: token,
+                                // user: user,
+                            }); 
                         } else {
-                            res.send('Incorrect password');
+                            res.json('Incorrect password');
                         }
                     }
                 })
             }
+        }
         }
     })}
     catch (error) {
