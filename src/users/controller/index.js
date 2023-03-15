@@ -1,6 +1,6 @@
-// const login = require('./login');
 const sendMail = require('./sendMail');
-const signup = require('./signup');
+const signUp = require('./signup');
 const verify = require('./verify');
+const login = require('./login');
 
-module.exports = { sendMail, signup, verify };
+module.exports = { login , sendMail, signUp, verify };
