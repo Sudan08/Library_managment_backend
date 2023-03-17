@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/mongoose');
+const config = require('../../../config');
 
 
 const login = async (res, req) => {

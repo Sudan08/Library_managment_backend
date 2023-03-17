@@ -1,12 +1,11 @@
 
 const BookModel = require('../model/bookModel');
-
+const checkIfAuthenticated = require('../../../middlewares/validateAuth');
 
 const getBooks = async (res, req) => {
     // const {
     //     token
     // } = req;
-
 
     try {
         const books = await BookModel.find();
