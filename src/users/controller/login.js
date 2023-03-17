@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/mongoose');
+const config = require('../../../config');
 
 
 const login = async (res, req) => {
@@ -28,15 +29,16 @@ const login = async (res, req) => {
                         console.log(err);
                     } else {
                         if (result) {
-                            // const token = jwt.sign(
-                            //     { email, id: user.id, userName: user.userName },
-                            //     config.API_KEY_JWT,
-                            // );
+                            const token = jwt.sign(
+                                { email, id: user.id, userName: user.userName  , scope : user.scope},
+                                config.API_KEY_JWT,
+                                { expiresIn: config.TOKEN_EXPIRES_IN },
+                            );
                             res.status(200).json({
                                 status: 200,
                                 message: 'Login Successful',
-                                // token: token,
-                                // user: user,
+                                token: token,
+                                user: user,
                             }); 
                         } else {
                             res.json('Incorrect password');

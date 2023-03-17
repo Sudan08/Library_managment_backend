@@ -45,10 +45,11 @@ const signUp = async (res, req) => {
     try {
       const savedUser = await newUser.save();
       sendEmail(email , uniqueString);
-      // const token = jwt.sign(
-      //   { email, id: savedUser.id, userName },
-      //   config.API_KEY_JWT,
-      // );
+      const token = jwt.sign(
+        { email, id: savedUser.id, userName , scope },
+        config.API_KEY_JWT,
+        { expiresIn: config.TOKEN_EXPIRES_IN },
+      );
 
       return res.status(201).json({ token });
     } catch (error) {
