@@ -6,7 +6,6 @@ const config = require('../../../config');
 
 const login = async (res, req) => {
     const {
-      scope,
       password,
       email,
     } = req;
@@ -23,7 +22,34 @@ const login = async (res, req) => {
             }else{
             if (user.length === 0) {
                 res.json('User does not exist');
-            } else{
+            }
+            // if (email === "admin@gmail.com"){
+            //     bcrypt.compare(password, user.password, (err, result) => {
+            //         if (err) {
+            //             console.log(err);
+            //         } else {
+            //             if (result) {
+            //                 const token = jwt.sign(
+            //                     { email, id: user.id, userName: user.userName  , scope : user.scope},
+            //                     config.API_KEY_JWT,
+            //                     { expiresIn: config.TOKEN_EXPIRES_IN },
+            //                 );
+            //                 res.status(200).json({
+            //                     status: 200,
+            //                     message: 'Login Successful',
+            //                     token: token,
+            //                     scope : user.scope,
+            //                     isAuthenticated : true,
+            //                 }); 
+            //             } else {
+            //                 res.json('Incorrect password');
+            //             }
+            //         }
+            //     })
+
+            // } 
+            
+            else{
                 bcrypt.compare(password, user.password, (err, result) => {
                     if (err) {
                         console.log(err);
@@ -38,7 +64,8 @@ const login = async (res, req) => {
                                 status: 200,
                                 message: 'Login Successful',
                                 token: token,
-                                user: user,
+                                scope : user.scope,
+                                isAuthenticated : true,
                             }); 
                         } else {
                             res.json('Incorrect password');

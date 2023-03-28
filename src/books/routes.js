@@ -21,6 +21,16 @@ router.post(
 );
 
 
+router.get(
+  '/api/v1/deleteBook/:id',
+  (req ,res) =>{
+    controller.deleteBook(res, req.params);
+  }
+)
+
+
+router.update
+
 
 
 

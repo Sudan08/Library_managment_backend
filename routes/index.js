@@ -6,7 +6,7 @@ const {checkIfAuthenticated} = require('../middlewares/validateAuth');
 module.exports = (app) => {
   app.use('/status', status);
   app.use('/users', users);
-  app.use('/books',checkIfAuthenticated ,books);
+  app.use('/books',books);
   app.use('*', (req, res) => {
     res.send('Not found!!!');
   });

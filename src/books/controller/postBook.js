@@ -2,9 +2,10 @@
 const BookModel = require('../model/bookModel');
 
 
-const postBooks = async (res, req) => {
+const postBook = async (res, req) => {
     try {
-        const books = await BookModel.find();
+        console.log(req);
+        const books = await BookModel.create(req);
         res.status(200).json({
             books
         });
@@ -16,4 +17,4 @@ const postBooks = async (res, req) => {
     
 }
 
-module.exports = getBooks;
+module.exports = postBook;
