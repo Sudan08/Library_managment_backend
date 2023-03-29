@@ -1,7 +1,7 @@
 const { getBooks } = require('./getBooks');
-const postBook = require('./postBook');
+const {postBook} = require('./postBook');
 const {getSingleBook} = require('./getBooks');
 const {deleteBook} = require('./getBooks');
+const { updateBook } = require('./postBook');
 
-
-module.exports = { getBooks , postBook , getSingleBook , deleteBook};
+module.exports = { updateBook, getBooks , postBook , getSingleBook , deleteBook};
