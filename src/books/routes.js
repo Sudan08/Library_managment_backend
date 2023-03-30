@@ -35,6 +35,12 @@ router.put(
   }
 )
 
+router.put(
+  '/api/v1/updateBooking/:id',
+  (req ,res) =>{
+    controller.updateBooking(res, req);
+  }
+)
 
 
 
