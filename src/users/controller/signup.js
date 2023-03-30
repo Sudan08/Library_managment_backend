@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const UserModel = require('../models/mongoose');
 
 const sendEmail = require('./sendMail');
-// const config = require('../../../config');
 
 
 const randString = () => {
@@ -18,7 +17,6 @@ const randString = () => {
 
 const signUp = async (res, req) => {
   const {
-    scope,
     password,
     email,
     userName,
@@ -35,7 +33,7 @@ const signUp = async (res, req) => {
       userName,
       firstName,
       lastName,
-      scope,
+      scope : 'user',
       verification:{
         randomnum: uniqueString,
         isValid,
@@ -46,7 +44,7 @@ const signUp = async (res, req) => {
       const savedUser = await newUser.save();
       sendEmail(email , uniqueString);
       const token = jwt.sign(
-        { email, id: savedUser.id, userName , scope },
+        { email, id: savedUser.id, userName },
         config.API_KEY_JWT,
         { expiresIn: config.TOKEN_EXPIRES_IN },
       );

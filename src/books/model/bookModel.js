@@ -18,16 +18,16 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    volume :{
-        type: Number,
-    },
-    availabiilty :{
-        type: Boolean,
-    },
-    src :{
-        type: String,
-        required : true,
-    }, 
+    // volume :{
+    //     type: Number,
+    // },
+    // availabiilty :{
+    //     type: Boolean,
+    // },
+    // src :{
+    //     type: String,
+    //     required : true,
+    // }, 
  },
 );
 
