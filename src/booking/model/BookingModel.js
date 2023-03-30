@@ -1,7 +1,10 @@
 const mongoose = require('../../services/mongoose');
 
-
-const BookSchema = new mongoose.Schema({
+const BookingSchema = new mongoose.Schema({
+    bookId :{
+        type: String,
+        required : true,
+    },
     title :{
         type: String,
         required : true,
@@ -10,24 +13,24 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    description : {
+    userName : {
         type: String,
         required : true,
     },
-    genre : {
+    userId:{
         type: String,
         required : true,
     },
-    booked :{
+    bookedDate : {
+        type: Date,
+        required : true,
+    },
+    isIssued :{
         type: Boolean,
         required : true,
     },
- },
-);
+})
 
 
-
-
-
-const BookModel = mongoose.model('Books', BookSchema);
-module.exports = BookModel;
+const BookingModel = mongoose.model('Bookings', BookingSchema);
+module.exports = BookingModel;

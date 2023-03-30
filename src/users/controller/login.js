@@ -66,6 +66,8 @@ const login = async (res, req) => {
                                 token: token,
                                 scope : user.scope,
                                 isAuthenticated : true,
+                                userName : user.userName,
+                                _userId : user.id,
                             }); 
                         } else {
                             res.json('Incorrect password');
