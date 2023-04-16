@@ -20,6 +20,7 @@ const postBook = async (res, req) => {
 const updateBook = async (res, req) => {
     const { id } = req.params;
     const { title, genre, author, description , booked } = req.body;
+    console.log(req);
     
     try {
         const books = await BookModel.findOneAndUpdate({ _id : id }, { 

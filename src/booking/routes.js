@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get(
     '/api/v1/getbooking',
-    (req,res)=>{
+    (req,res)=>{ 
         getBooking(req,res);
     }
 );

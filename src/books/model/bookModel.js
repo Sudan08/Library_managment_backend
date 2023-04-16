@@ -22,6 +22,9 @@ const BookSchema = new mongoose.Schema({
         type: Boolean,
         required : true,
     },
+    src : {
+        type: String,
+    }
  },
 );
 
