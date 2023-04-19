@@ -20,8 +20,6 @@ const postBook = async (res, req) => {
 const updateBook = async (res, req) => {
     const { id } = req.params;
     const { title, genre, author, description , booked } = req.body;
-    console.log(req);
-    
     try {
         const books = await BookModel.findOneAndUpdate({ _id : id }, { 
             title: title,
@@ -40,10 +38,10 @@ const updateBook = async (res, req) => {
 }
 
 const updateBooking = async (res, req) => {
-    const { id } = req.params;
-    const { booked } = req.body;
+    const { booked , bookId} = req.body;
+    console.log(booked,bookId)
     try {
-        const books  = await BookModel.findOneAndUpdate({_id:id},{
+        const books  = await BookModel.findOneAndUpdate({_id:bookId},{
             booked : booked
         });
         res.status(200).json({
