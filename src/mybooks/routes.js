@@ -7,9 +7,9 @@ const router = express.Router();
 
 
 router.get(
-  '/api/v1/getBooks',
+  '/api/v1/getBooks/:id',
   (req, res) => {
-    controller.getBooks(res, req);
+    controller.getBooks(res, req.params.id);
   }
 )
 
