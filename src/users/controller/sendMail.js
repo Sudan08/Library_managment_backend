@@ -17,7 +17,7 @@ const sendMail = (email, uniqueString) =>{
         from : "library.management6969@gmail.com",
         to : email,
         subject : "Email Verification",
-        html : `Press <a href=http://localhost:8000/api/v1/verify/${uniqueString}>here</a> to verify your email`
+        html : `Press <a href=http://localhost:8000/users/api/v1/verify/${uniqueString}>here</a> to verify your email`
     };
 
     Transport.sendMail(mailOptions, (err, response )=> {

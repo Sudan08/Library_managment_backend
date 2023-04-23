@@ -1,9 +1,11 @@
 
-const BookModel = require('../../books/model/bookModel');
+const BookingModel = require('../../booking/model/BookingModel');
 
 const deleteBook = async (res,req) =>{
     try{
-        BookModel.deleteOne( {_id : req},function (err) {
+        const userBooks = await BookingModel.find({userId : userId});
+        console.log(userBooks);
+        BookingModel.deleteOne( {_id : req},function (err) {
             res.status(200).json({ message: 'Book deleted successfully' , status : 200 });
         });
 
