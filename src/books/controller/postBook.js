@@ -39,7 +39,6 @@ const updateBook = async (res, req) => {
 
 const updateBooking = async (res, req) => {
     const { booked , bookId} = req.body;
-    console.log(booked,bookId)
     try {
         const books  = await BookModel.findOneAndUpdate({_id:bookId},{
             booked : booked
