@@ -25,10 +25,17 @@ const BookingSchema = new mongoose.Schema({
         type: Date,
         required : true,
     },
+    returnDate :{
+        type: Date,
+        required : true,
+    },
     isIssued :{
         type: Boolean,
         required : true,
     },
+    fine : {
+        type: Number,
+    }
 })
 
 

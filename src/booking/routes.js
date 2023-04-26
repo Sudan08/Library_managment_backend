@@ -1,5 +1,5 @@
 const express = require('express');
-const {getBooking , postBooking , deleteBooking} = require('./controller/Booking.js');
+const {getBooking , postBooking , deleteBooking , updateBooking} = require('./controller/Booking.js');
 
 const router = express.Router();
 
@@ -23,6 +23,13 @@ router.delete(
         deleteBooking(req,res);
     }
 );
+
+router.patch(
+    '/api/v1/updatebooking/:id',
+    (req,res)=>{
+        updateBooking(req,res);
+    }
+)
 
 module.exports = router;
         
