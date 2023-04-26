@@ -9,7 +9,7 @@ mongoose.set('useNewUrlParser',true);
 mongoose.set('useCreateIndex',true);
 mongoose.connect(
   dbUrl,
-  { useNewUrlParser: true, useUnifiedTopology: true }, // To avoid deprecated options
+  { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) console.log('Error', err);
     else console.log('Mongodb connected');
