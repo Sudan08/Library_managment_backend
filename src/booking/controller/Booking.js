@@ -16,7 +16,6 @@ const getBooking = async (req, res) => {
             }
             return item;
         });
-        console.log(fineData);
         res.status(200).json({
             fineData
         });
@@ -28,6 +27,7 @@ const getBooking = async (req, res) => {
 };
 
 const postBooking = async (req, res) => {
+    console.log(req.body);
     try {
         const userId = req.params.id;
         const userBooks = await BookingModel.find({userId : userId});
@@ -57,7 +57,7 @@ const postBooking = async (req, res) => {
 const deleteBooking = async (req,res) =>{
     const id = req.params.id;
     try{
-        BookingModel.deleteOne( {bookId : id},function (err) {
+        BookingModel.deleteOne( {_id : id},function (err) {
             res.status(200).json({ message: 'Booking deleted successfully' , status : 200 });
         });
     }
