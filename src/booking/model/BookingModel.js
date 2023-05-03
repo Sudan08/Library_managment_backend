@@ -35,6 +35,10 @@ const BookingSchema = new mongoose.Schema({
     },
     fine : {
         type: Number,
+    },
+    scope : {
+        type: String,
+        required : true,
     }
 })
 

@@ -19,10 +19,6 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    booked :{
-        type: Boolean,
-        required : true,
-    },
     src : {
         type: String,
     }

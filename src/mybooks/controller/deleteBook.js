@@ -4,7 +4,6 @@ const BookingModel = require('../../booking/model/BookingModel');
 const deleteBook = async (res,req) =>{
     try{
         const userBooks = await BookingModel.find({userId : userId});
-        console.log(userBooks);
         BookingModel.deleteOne( {_id : req},function (err) {
             res.status(200).json({ message: 'Book deleted successfully' , status : 200 });
         });
