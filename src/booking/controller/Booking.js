@@ -27,18 +27,25 @@ const getBooking = async (req, res) => {
 };
 
 const postBooking = async (req, res) => {
-    console.log(req.body);
+    const {scope , userId} = req.body;
     try {
-        const userId = req.params.id;
         const userBooks = await BookingModel.find({userId : userId});
-        if (userBooks.length >= 2) {
+        if (userBooks.length >= 2 && scope === 'user') {
             res.status(500).json({
                 error: "You can't book more than 2 books"
+            });
+        } else if(userBooks.length >= 4 && scope === 'teacher'){
+            res.status(500).json({
+                error: "You can't book more than 4 books"
             });
         }
         else{
         const someDate = new Date();
-        req.body.returnDate = someDate.setDate(someDate.getDate() + 14);  
+        if (scope === 'user'){
+            req.body.returnDate = someDate.setDate(someDate.getDate() + 14);  
+        }else {
+            req.body.returnDate = someDate.setDate(someDate.getDate() + 20);
+        }
         req.body.fine = 0; 
         const booking = await BookingModel.create(req.body);
         res.status(200).json({

@@ -19,7 +19,12 @@ router.post(
   }
 );
 
-
+router.post(
+  '/api/v1/addTeacher',
+  (req , res) => {
+    controller.addTeacher(res, req.body);
+  }
+);
 
 router.get(
   '/api/v1/verify/:uniqueString',
