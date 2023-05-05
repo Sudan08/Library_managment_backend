@@ -12,6 +12,13 @@ router.post(
   }
 )
 
+router.get(
+  '/api/v1/getUser',
+  (req, res) => {
+    controller.getUser(res, req.body);
+  }
+)
+
 router.post(
   '/api/v1/signup',
   (req , res) => {

@@ -4,17 +4,18 @@ const getBooking = async (req, res) => {
     try {
         const booking = await BookingModel.find();
         const fineData = booking.map((item) => {
+            if (item.isUpdated) return item;
+            else {
             const today = new Date();
             const returnDate = new Date(item.returnDate);
             const diffTime = (today - returnDate > 0) ? today - returnDate : 0 ;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             if (diffDays > 0) {
                 item.fine = diffDays * 100;
-            }
-            else {
-                item.fine = 0;
+                BookingModel.findByIdAndUpdate(item._id , {fine : item.fine});
             }
             return item;
+            }
         });
         res.status(200).json({
             fineData
@@ -75,12 +76,20 @@ const deleteBooking = async (req,res) =>{
 
 const updateBooking = async (req,res) =>{
     const id = req.params.id;
+    const { issued , fine , isUpdated} = req.body; 
+    console.log(issued , fine , isUpdated);
     try{
-        const data = await BookingModel.findByIdAndUpdate(id, {isIssued : true})
+        if (issued != undefined){
+        const data = await BookingModel.findByIdAndUpdate(id , {isIssued : issued})
         res.status(200).json({ message: 'Booking updated successfully' , status : 200 });
+        } else if (fine != undefined) {
+            const data = await BookingModel.findByIdAndUpdate(id , {fine : fine , isUpdated : isUpdated})
+            console.log(data);
+            res.status(200).json({ message: 'Booking updated successfully' , status : 200 });
+        }
     }
     catch (err){
-        res.status(500).json({ error : error.message });
+        res.status(500).json({ error : err.message });
     }
 }
 module.exports = { getBooking, postBooking , deleteBooking , updateBooking};

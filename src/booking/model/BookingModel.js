@@ -36,6 +36,10 @@ const BookingSchema = new mongoose.Schema({
     fine : {
         type: Number,
     },
+    isUpdated : {
+        type: Boolean,
+        default : false,
+    },
     scope : {
         type: String,
         required : true,
